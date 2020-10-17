@@ -12,8 +12,8 @@ dotenv.config();
  * of adding body-parser middleware to handle POST requests
  */
 // app.use(express.urlencoded({ extended: false }));
-// app.use(express.json());
-app.use(express.text());
+app.use(express.json());
+// app.use(express.text());
 
 // // Enable CORS for all requests
 // app.use(cors());
@@ -38,7 +38,9 @@ app.get('/trips', (req, res) => {
 // POST route
 app.post('/trip', (req, res) => {
   tripData = req.body;
-  res.send({ success: true, message: 'Success' });
+  console.log(tripData);
+
+  res.send({ tripData, success: true, message: 'Success' });
 });
 
 module.exports = app;
