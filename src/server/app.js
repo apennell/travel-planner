@@ -38,7 +38,6 @@ app.get('/trips', (req, res) => {
 // POST route
 app.post('/trip', (req, res) => {
   tripData = req.body;
-  console.log(tripData);
 
   res.send({ tripData, success: true, message: 'Success' });
 });
