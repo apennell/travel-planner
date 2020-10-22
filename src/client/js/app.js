@@ -46,6 +46,7 @@ const handleSubmit = async (e) => {
   setLoading(true);
   destinationError.classList.add('hidden');
   departureError.classList.add('hidden');
+  formError.classList.add('hidden');
 
   const trip = {
     destination: destinationInput.value,
@@ -59,9 +60,10 @@ const handleSubmit = async (e) => {
     const results = await saveTrip(trip);
     destinationInput.value = '';
     departureInput.value = '';
-
+    console.log(results);
     if (results && results.tripData) {
-      renderTrip(results.tripData.destination, processedDate);
+      const { destination, imgSrc } = results.tripData;
+      renderTrip(destination, processedDate, imgSrc);
     } else {
       triggerErrorResults(
         formError,

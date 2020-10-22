@@ -63,10 +63,15 @@ const getWeather = async ({ lat, lng, countdownDays }) => {
   return weatherSection;
 };
 
-const renderTrip = async (destination, processedDate) => {
+const renderTrip = async (destination, processedDate, imgSrc) => {
   const tripsSection = document.querySelector('#trips');
   const trip = document.createElement('div');
   trip.classList.add('trip');
+
+  // Set location image
+  const img = document.createElement('img');
+  img.src = imgSrc;
+  trip.appendChild(img);
 
   // Set location info
   const heading = document.createElement('h3');
@@ -98,6 +103,7 @@ const renderTrip = async (destination, processedDate) => {
   });
   trip.appendChild(weatherSection);
 
+  // Add all the elements created above to the document
   tripsSection.appendChild(trip);
 };
 
