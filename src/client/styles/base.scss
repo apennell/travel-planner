@@ -1,0 +1,110 @@
+@use 'styles/variables' as *;
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  font-family: $primary-font;
+  color: $text-color;
+  background-color: $light-color;
+}
+
+/* Layout */
+.page {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  margin: 0 auto;
+  padding: 1em 2em;
+}
+
+@media screen and (min-width: 768px) {
+  .page {
+    max-width: 768px;
+    padding: 1.5em 2em;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .page {
+    max-width: 1050px;
+    padding: 1.5em 2.5em;
+  }
+}
+
+/* Typography */
+h1,
+h2,
+h3 {
+  font-family: $primary-font;
+  font-weight: 600;
+  line-height: 1.2;
+  color: $primary-color;
+}
+
+h1 {
+  font-size: 2.25rem;
+  margin: 0;
+}
+
+h2 {
+  font-size: 1.5rem;
+}
+
+h3 {
+  font-size: 1.25rem;
+}
+
+@media (min-width: 768px) {
+  h1 {
+    font-size: 3.375rem;
+  }
+
+  h2 {
+    font-size: 2.25rem;
+  }
+
+  h3 {
+    font-size: 1.5rem;
+  }
+}
+
+p {
+  font: 1rem $primary-font;
+  line-height: 1.5rem;
+}
+
+a,
+a:visited {
+  font: 600 1rem $mono-font;
+  color: $primary-color-light;
+  text-decoration: none;
+}
+
+a:hover {
+  color: $primary-color;
+  text-decoration: underline;
+}
+
+footer {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  bottom: 0;
+  height: 3.5em;
+  font-family: $mono-font;
+}
+
+@media screen and (min-width: 768px) {
+  footer {
+    padding: 1em 0;
+  }
+}

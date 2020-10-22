@@ -12,6 +12,7 @@ module.exports = {
   devServer: {
     proxy: {
       '/trip': 'http://localhost:3000',
+      '/weather': 'http://localhost:3000',
     },
   },
   module: {
