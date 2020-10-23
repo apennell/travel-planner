@@ -10,3 +10,9 @@ Technologies: Node, Express, JavaScript, HTML, Sass, Webpack, Geonames API, Weat
 2. Run `npm install` to install the node modules
 3. Run `npm start` to start the server
 4. Open the browser to [http://localhost:3000](http://localhost:3000) and try it out!
+
+## Bonuses
+
+- Searches Pixabay for an image using the state and country name if no results are found for the destination city
+- Includes one week of forecasts
+- User can add multiple trips

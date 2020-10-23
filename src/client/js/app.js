@@ -1,4 +1,6 @@
-import renderTrip from './renderTrip';
+// TODO: "There should be a primary object with placeholder member value pairs"
+
+import renderTrip from './render-trip';
 import handleDate from './date-handler';
 
 const destinationInput = document.querySelector('#destination-input');
@@ -16,6 +18,7 @@ const setLoading = (isLoading) => {
   saveTripButton.disabled = isLoading;
 };
 
+// Submit trip to backend and retrieve additional info about destination/date
 const saveTrip = async (tripData) => {
   const trip = await fetch('/trip', {
     method: 'POST',
@@ -32,6 +35,7 @@ const saveTrip = async (tripData) => {
   return trip;
 };
 
+// Process error results and add to UI
 const triggerErrorResults = (targetEl, copy) => {
   Object.assign(targetEl, {
     textContent: copy,

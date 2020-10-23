@@ -1,4 +1,4 @@
-const validateDate = (dateInput) => {
+export const validateDate = (dateInput) => {
   // Expected format from HTML date input: "YYYY-MM-DD"
   const dateFormat = /\d{4}-\d{1,2}-\d{1,2}/;
 

@@ -41,7 +41,7 @@ const getDestination = async (dest) => {
   return destination;
 };
 
-// Retrieve and return
+// Retrieve and return image from Pixabay API
 const fetchImages = async (query) => {
   const baseUrl = `https://pixabay.com/api/?key=${process.env.PIXABAY_API_KEY}`;
   const url = `${baseUrl}&q=${query}&image_type=photo&orientation=horizontal`;
@@ -60,8 +60,12 @@ const getImage = async ({ name, adminName1, countryName }) => {
   const queries = [name, adminName1, countryName];
   let imgSrc = null;
   let i = 0;
+
+  /**
+   * To ensure an image result is returned, we can try searching by city (name), state/secondary
+   * location (adminName1), and country until a result is found
+   */
   while (!imgSrc && i < queries.length) {
-    console.log('QUERY', queries[i]);
     let searchResults = await fetchImages(queries[i].replace(/\s/g, '+'))
       // eslint-disable-next-line no-console
       .catch((error) => console.error('Error getting image:', error));

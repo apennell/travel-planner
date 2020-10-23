@@ -1,9 +1,10 @@
+// Test routes in server/app.js
 const supertest = require('supertest');
-const app = require('./app');
+const app = require('../server/app');
 const request = supertest(app);
 
 describe('GET / route', () => {
-  it('should successfully get the endpoint', async () => {
+  it('successfully gets the endpoint', async () => {
     const response = await request.get('/');
     expect(response.status).toBe(200);
   });
