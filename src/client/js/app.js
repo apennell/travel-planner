@@ -64,7 +64,7 @@ const handleSubmit = async (e) => {
     const results = await saveTrip(trip);
     destinationInput.value = '';
     departureInput.value = '';
-    console.log(results);
+
     if (results && results.tripData) {
       const { destination, imgSrc } = results.tripData;
       renderTrip(destination, processedDate, imgSrc);

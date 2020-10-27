@@ -14,27 +14,27 @@ body {
   margin: 0;
   font-family: $primary-font;
   color: $text-color;
-  background-color: $light-color;
+  background-color: $white;
 }
 
 /* Layout */
 .page {
   position: relative;
   min-height: 100vh;
+  padding-bottom: 60px;
+}
+
+.container {
   width: 100%;
   margin: 0 auto;
   padding: 1em 2em;
-}
 
-@media screen and (min-width: 768px) {
-  .page {
+  @media screen and (min-width: 768px) {
     max-width: 768px;
     padding: 1.5em 2em;
   }
-}
 
-@media screen and (min-width: 992px) {
-  .page {
+  @media screen and (min-width: 992px) {
     max-width: 1050px;
     padding: 1.5em 2.5em;
   }
@@ -43,7 +43,8 @@ body {
 /* Typography */
 h1,
 h2,
-h3 {
+h3,
+h4 {
   font-family: $primary-font;
   font-weight: 600;
   line-height: 1.2;
@@ -52,7 +53,6 @@ h3 {
 
 h1 {
   font-size: 2.25rem;
-  margin: 0;
 }
 
 h2 {
@@ -61,6 +61,10 @@ h2 {
 
 h3 {
   font-size: 1.25rem;
+}
+
+h4 {
+  font-size: 1rem;
 }
 
 @media (min-width: 768px) {
@@ -74,6 +78,10 @@ h3 {
 
   h3 {
     font-size: 1.5rem;
+  }
+
+  h4 {
+    font-size: 1.25rem;
   }
 }
 
@@ -94,6 +102,13 @@ a:hover {
   text-decoration: underline;
 }
 
+header {
+  h1 {
+    margin: 0;
+    color: $primary-color;
+  }
+}
+
 footer {
   display: flex;
   align-items: center;
@@ -101,10 +116,13 @@ footer {
   bottom: 0;
   height: 3.5em;
   font-family: $mono-font;
-}
 
-@media screen and (min-width: 768px) {
-  footer {
+  @media screen and (min-width: 768px) {
     padding: 1em 0;
   }
+}
+
+/* Utility classes */
+.hidden {
+  display: none;
 }

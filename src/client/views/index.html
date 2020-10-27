@@ -14,45 +14,57 @@
   <body>
     <div class="page">
       <header>
-        <h1>Travel Planner</h1>
+        <div class="container">
+          <h1>Travel Planner</h1>
+        </div>
       </header>
 
       <main>
-        <section>
-          <h2>Add Trip</h2>
-          <form>
-            <div id="destination-field" class="form-field">
-              <label for="destination-input">Destination</label>
-              <input
-                id="destination-input"
-                type="text"
-                placeholder="San Francisco, CA"
-                required
-              />
-              <label for="destination-input" class="error hidden"></label>
-            </div>
-            <div id="departure-field" class="form-field">
-              <label for="departure-input">Departure Date</label>
-              <input
-                id="departure-input"
-                type="date"
-                pattern="\d{1,2}/\d{1,2}/\d{4}"
-                required
-              />
-              <label for="departure-input" class="error hidden"></label>
-            </div>
-            <button id="save-trip" type="submit">Save Trip</button>
-            <label id="form-error" for="save-trip" class="error hidden"></label>
-          </form>
+        <section class="form-section">
+          <div class="container">
+            <h2>+ Add Trip</h2>
+            <form>
+              <div id="destination-field" class="form-field">
+                <label for="destination-input">Destination</label>
+                <input
+                  id="destination-input"
+                  type="text"
+                  placeholder="San Francisco, CA"
+                  required
+                />
+                <label for="destination-input" class="error hidden"></label>
+              </div>
+              <div id="departure-field" class="form-field">
+                <label for="departure-input">Departure Date</label>
+                <input
+                  id="departure-input"
+                  type="date"
+                  pattern="\d{1,2}/\d{1,2}/\d{4}"
+                  required
+                />
+                <label for="departure-input" class="error hidden"></label>
+              </div>
+              <button id="save-trip" type="submit">Save Trip</button>
+              <label
+                id="form-error"
+                for="save-trip"
+                class="error hidden"
+              ></label>
+            </form>
+          </div>
         </section>
 
         <section id="trips">
-          <h2>Saved Trips</h2>
+          <div class="container">
+            <h2>Saved Trips</h2>
+          </div>
         </section>
       </main>
 
       <footer>
-        © <a href="https://github.com/apennell">Annie Pennell</a> 2020
+        <div class="container">
+          © <a href="https://github.com/apennell">Annie Pennell</a> 2020
+        </div>
       </footer>
     </div>
   </body>

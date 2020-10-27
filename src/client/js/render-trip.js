@@ -9,19 +9,14 @@ const formatDate = (date) => {
   return d.toLocaleString('en-us', options);
 };
 
-const createForecast = (weatherData, isCurrent) => {
-  const wrapper = document.createDocumentFragment();
-  const heading = document.createElement('h4');
-  heading.textContent = `${
-    isCurrent ? 'This' : 'Next'
-  } Week's Weather Forecast`;
-  wrapper.appendChild(heading);
+const createForecast = (weatherData) => {
+  const wrapper = document.createElement('div');
+  wrapper.classList.add('forecast');
 
   weatherData.forEach((data) => {
     const { high_temp, low_temp, valid_date } = data;
     const forecast = document.createElement('p');
-    forecast.textContent = `
-      ${formatDate(valid_date)}:
+    forecast.textContent = `${formatDate(valid_date)}:
       ${Math.floor(high_temp)}°F | ${Math.floor(low_temp)}°F`;
     wrapper.appendChild(forecast);
   });
@@ -29,7 +24,9 @@ const createForecast = (weatherData, isCurrent) => {
   return wrapper;
 };
 
-const getWeather = async ({ lat, lng, countdownDays }) => {
+const getWeather = async ({ destination, countdownDays }) => {
+  const { lat, lng, name } = destination;
+
   const weather = await fetch('/weather', {
     method: 'POST',
     // credentials: 'same-origin',
@@ -47,11 +44,17 @@ const getWeather = async ({ lat, lng, countdownDays }) => {
   if (weather.data && weather.data.length > 0) {
     if (countdownDays < 7) {
       // return next 7 days forecast
-      const forecast = createForecast(weather.data.slice(0, 7), true);
+      const heading = document.createElement('h4');
+      heading.textContent = `This Week's Weather Forecast in ${name}`;
+      weatherSection.appendChild(heading);
+      const forecast = createForecast(weather.data.slice(0, 7));
       weatherSection.appendChild(forecast);
     } else {
       // return the 7-13th forecasts
-      const forecast = createForecast(weather.data.slice(7, 14), false);
+      const heading = document.createElement('h4');
+      heading.textContent = `Next Week's Weather Forecast in ${name}`;
+      weatherSection.appendChild(heading);
+      const forecast = createForecast(weather.data.slice(7, 14));
       weatherSection.appendChild(forecast);
     }
   } else {
@@ -82,26 +85,24 @@ const renderTrip = async (destination, processedDate, imgSrc) => {
       : `${name}, ${countryName}`;
   trip.appendChild(heading);
 
-  // Set date
-  const date = document.createElement('p');
-  date.textContent = processedDate.formattedDate;
-  trip.appendChild(date);
+  const infoSection = document.createElement('div');
+  infoSection.classList.add('container');
 
-  // Set countdown
-  const countdown = document.createElement('p');
+  // Set date and countdown
+  const date = document.createElement('p');
   const { countdownDays } = processedDate;
-  countdown.textContent = `${
-    countdownDays < 1 ? 'Less than 1' : countdownDays
-  } day${countdownDays > 1 ? 's' : ''} until trip`;
-  trip.appendChild(countdown);
+  date.textContent = `${processedDate.formattedDate} - 
+    ${countdownDays < 1 ? 'Less than 1' : countdownDays} 
+    day${countdownDays > 1 ? 's' : ''} until trip`;
+  infoSection.appendChild(date);
 
   // Get and set weather
   const weatherSection = await getWeather({
-    lat: destination.lat,
-    lng: destination.lng,
+    destination,
     countdownDays,
   });
-  trip.appendChild(weatherSection);
+  infoSection.appendChild(weatherSection);
+  trip.appendChild(infoSection);
 
   // Add all the elements created above to the document
   tripsSection.appendChild(trip);
