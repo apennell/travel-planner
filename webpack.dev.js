@@ -1,5 +1,6 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const WorkboxPlugin = require('workbox-webpack-plugin');
 
 module.exports = {
   mode: 'development',
@@ -38,5 +39,6 @@ module.exports = {
       cleanStaleWebpackAssets: true,
       protectWebpackAssets: false,
     }),
+    new WorkboxPlugin.GenerateSW(),
   ],
 };

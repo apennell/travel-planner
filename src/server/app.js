@@ -45,14 +45,12 @@ const getDestination = async (dest) => {
 const fetchImages = async (query) => {
   const baseUrl = `https://pixabay.com/api/?key=${process.env.PIXABAY_API_KEY}`;
   const url = `${baseUrl}&q=${query}&image_type=photo&orientation=horizontal`;
-  console.log({ url });
   // &category=places or travel
   const images = await fetch(url)
     .then((res) => res.json())
     // eslint-disable-next-line no-console
     .catch((error) => console.error('Error fetching images:', error));
 
-  console.log(images);
   return images;
 };
 

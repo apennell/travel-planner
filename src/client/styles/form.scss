@@ -9,8 +9,10 @@
 }
 
 form {
+  max-width: 500px;
   margin: 0 auto 4rem;
   font-size: 1.5rem;
+  text-align: center;
   color: $white;
 }
 
@@ -44,21 +46,20 @@ button {
   width: 100%;
   margin: 0.5rem 0;
   font: 600 1rem $mono-font;
-  color: $secondary-color;
-  background: #ffffff;
-  border: 2px solid $secondary-color;
+  color: $white;
+  background: $secondary-color;
+  border: 2px solid $white;
   border-radius: 2px;
   padding: 0.75em;
 }
 
 button:hover {
-  color: $primary-color;
-  border-color: $primary-color;
+  background-color: $secondary-color-dark;
 }
 
 .error {
   margin-top: 0;
-  color: $secondary-color;
+  color: $secondary-color-dark;
   font-size: 0.75rem;
   font-weight: 400;
 }
