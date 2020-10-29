@@ -1,5 +1,3 @@
-// TODO: "There should be a primary object with placeholder member value pairs"
-
 import renderTrip from './render-trip';
 import handleDate from './date-handler';
 
@@ -11,6 +9,8 @@ const departureInput = document.querySelector('#departure-input');
 const departureError = document.querySelector('#departure-field label.error');
 const saveTripButton = document.querySelector('#save-trip');
 const formError = document.querySelector('#form-error');
+
+let trips = [];
 
 // Update UI to indicate loading status on submit and when results are complete
 const setLoading = (isLoading) => {
@@ -59,13 +59,15 @@ const handleSubmit = async (e) => {
 
   const processedDate = handleDate(trip.departureDate);
 
+  // Save trip and render results in UI (or error message, if no results)
   if (trip.destination && processedDate.isValid) {
     trip.departureDate = processedDate;
     const results = await saveTrip(trip);
-    destinationInput.value = '';
-    departureInput.value = '';
 
     if (results && results.tripData) {
+      destinationInput.value = '';
+      departureInput.value = '';
+      trips.push(results.tripData);
       const { destination, imgSrc } = results.tripData;
       renderTrip(destination, processedDate, imgSrc);
     } else {
