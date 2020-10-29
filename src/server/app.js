@@ -1,19 +1,12 @@
 const fetch = require('node-fetch');
 const dotenv = require('dotenv');
 const express = require('express');
-const cors = require('cors');
 
 const app = express();
 
 dotenv.config();
-
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
-
-app.use(cors());
-
-// Initialize application
 app.use(express.static('dist'));
+app.use(express.json());
 
 // Base route to retrieve webpage
 app.get('/', (req, res) => {
@@ -22,11 +15,6 @@ app.get('/', (req, res) => {
 
 // Serves as "database" to saved submitted trip data
 let tripData = {};
-
-// GET route
-app.get('/trips', (req, res) => {
-  res.send(tripsData);
-});
 
 // Retrieve and return location information for destination input
 const getDestination = async (dest) => {
@@ -45,7 +33,6 @@ const getDestination = async (dest) => {
 const fetchImages = async (query) => {
   const baseUrl = `https://pixabay.com/api/?key=${process.env.PIXABAY_API_KEY}`;
   const url = `${baseUrl}&q=${query}&image_type=photo&orientation=horizontal`;
-  // &category=places or travel
   const images = await fetch(url)
     .then((res) => res.json())
     // eslint-disable-next-line no-console
